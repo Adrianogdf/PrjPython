@@ -1,4 +1,28 @@
-#Arquivo para validação de toda regra de negócio.
-#Garantir que os dados sejam verficados e ou validado os dados.
-#Faço da forma tradicional e onde tenho tipagens padrões para validação dos registros e tipagem do código.
-#Vou criar uma classe chamando ela de contrato e depois chamar ela.
+from datetime import datetime
+from typing import Tuple
+from pydantic import BaseModel, EmailStr, PositiveFloat, PositiveInt
+from enum import Enum
+
+class ProdutoEnum(str, Enum):
+    produto1 = "ZapFlow com Gemini"
+    produto2 = "ZapFlow com chatGPT"
+    produto3 = "ZapFlow com Llama3.0"
+
+class Vendas(BaseModel):
+    """
+    Modelo de dados para as vendas.
+
+    Args:
+        email (EmailStr): email do comprador
+        data (datetime): data da compra
+        valor (PositiveFloat): valor da compra
+        produto (PositiveInt): nome do produto
+        quantidade (PositiveInt): quantidade de produtos
+        produto (ProdutoEnum): categoria do produto
+    """
+
+    email: EmailStr # kaio =! kaio@gmai.com
+    data: datetime
+    valor: PositiveFloat
+    quantidade: PositiveInt
+    produto: ProdutoEnum
